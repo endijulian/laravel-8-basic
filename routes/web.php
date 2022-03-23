@@ -23,11 +23,20 @@ Route::get('/email/verify', function () {
 })->middleware('auth')->name('verification.notice');
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $brands = DB::table('brands')->get();
+    return view('home', compact('brands'));
+});
+
+Route::get('/home', function () {
+    echo "This is home page";
+});
+
+Route::get('/about', function () {
+    return view('about');
 });
 
 
-// Route::get('/contact', 'ContactController@index');
 Route::get('/contact', [ContactController::class, 'index']);
 
 
